@@ -1,22 +1,30 @@
-// generate random letter
-function randLetter(){
+
+var attempt= 0;
+
+
+var chances = 0;
+var maxTries= 9;
+// generate random letter and store for later
+function randLetter(){ 
     var letterList= ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
     var letter = letterList[Math.floor(Math.random()* letterList.length)];
      console.log(letter)
 }
 
-randLetter();
-// capture user keystrokecd ../
-document.onkeyup = function(event){
-    var userGuess= event.key;
+randLetter()
+
+// check to see if the letter is correct
+while (attempt !== randLetter()) {
+    var attempt= prompt("please use the keyboard to pick a letter");
+    chances  += 1; 
+
+    if (chances > maxTries) {
+        breakdocument.write("You have run out of chances. Computer wins");
+        break
+    }
 }
+// If the number is incorrect, prompt the user to guess again. Repeat until the user guesses the letter or runs out of chances.
 
-// compare user keystroke to computer generated lettter
+// If the user guesses the correct letter, Tell them the winning letter and thank them form playing
 
-// if the letter matches, alert that the user wins and add one to the win column
-if (randLetter === userGuess){
-    alert("User Wins")
-}
-// else add the user selected letter to the letters guessed section and take awayone chance
-
-// if all the chances are used, alert that computer wins and reset the game
+// program complete
