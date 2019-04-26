@@ -10,17 +10,37 @@ var lettersGuessed = [];
 // variables to hold references to the place text will go
 var winsText = document.getElementById("wins");
 var lossesText = document.getElementById("losses");
-var chancesLeft = document.getElementById("guesses_left");
-var lettersGuessed = document.getElementById("letter_guessed");
+var chancesLeftText = document.getElementById("guesses_left");
+var lettersGuessedText = document.getElementById("letter_guessed");
 var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-var updateGuessesLeft =function(){
-    document.
-}
+
+//function for computer generated random number 
+var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+console.log(computerGuess);
 
 // function for key pressed
-document.onkeyup = function(event){
+document.onkeydown = function(event){
+    chanceLeft--;
+    var userGuess =event.key;
 
-    // determines that a key was pressed
-    var userGuess =event.key
+    lettersGuessed.push(userGuess);
+    lettersGuessedText.textContent ="Letters Guessed: " + lettersGuessed.toString();
+
+
+    if(chanceLeft > 0 ){
+        if(userGuess === computerGuess){
+            wins++;
+            winsText.textContent = "Wins: " + wins;
+           
+        }
+        else{
+            losses++;
+            chancesLeftText.textContent = "Guesses Left: " + chanceLeft;
+            lossesText.textContent = "Losses: " + losses;
+            
+
+        }
+    }
+    
 }
