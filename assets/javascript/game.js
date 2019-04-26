@@ -6,41 +6,49 @@ var wins = 0;
 var losses = 0;
 var chanceLeft = 9;
 var lettersGuessed = [];
+var psychicGuess = computerGuess()
 
 // variables to hold references to the place text will go
 var winsText = document.getElementById("wins");
 var lossesText = document.getElementById("losses");
 var chancesLeftText = document.getElementById("guesses_left");
 var lettersGuessedText = document.getElementById("letter_guessed");
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
 
 //function for computer generated random number 
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-console.log(computerGuess);
+function computerGuess(){ 
+    console.log("message")
+    return computerChoices[Math.floor(Math.random() * computerChoices.length)]
+};
+
+console.log(psychicGuess);
 
 // function for key pressed
 document.onkeydown = function(event){
     chanceLeft--;
-    var userGuess =event.key;
+    var userGuess = event.key;
 
-    lettersGuessed.push(userGuess);
-    lettersGuessedText.textContent ="Letters Guessed: " + lettersGuessed.toString();
+    if(chanceLeft >= 0 ){
+        lettersGuessedText.textContent ="Letters Guessed: " + lettersGuessed.toString();
 
 
-    if(chanceLeft > 0 ){
-        if(userGuess === computerGuess){
+        if(userGuess === psychicGuess){
             wins++;
-            winsText.textContent = "Wins: " + wins;
-           
+            winsText.textContent = "Wins: " + wins; 
+            console.log("message2") 
+            psychicGuess = computerGuess();
+            console.log(psychicGuess);
+
         }
         else{
-            losses++;
             chancesLeftText.textContent = "Guesses Left: " + chanceLeft;
             lossesText.textContent = "Losses: " + losses;
-            
-
+            lettersGuessed.push(userGuess);
         }
+    }
+    else{
+        losses++;
+        alert("Computer Wins, please try again!")
     }
     
 }
