@@ -4,7 +4,7 @@ var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
 // creating variables to hold wins, losses, chances left, and letters guessed
 var wins = 0;
 var losses = 0;
-var chanceLeft = 9;
+var chanceLeft = 11;
 var lettersGuessed = [];
 var psychicGuess = computerGuess()
 
@@ -29,7 +29,7 @@ document.onkeydown = function(event){
     var userGuess = event.key;
 
     // why can't I reach this point?
-    
+
     if(chanceLeft > -1 ){
         lettersGuessedText.textContent ="Letters Guessed: " + lettersGuessed.toString();
 
@@ -40,7 +40,7 @@ document.onkeydown = function(event){
             psychicGuess = computerGuess();
             console.log(psychicGuess);
             lettersGuessed.length=0;
-            chanceLeft=9;
+            chanceLeft=11;
 
         }
         else{
