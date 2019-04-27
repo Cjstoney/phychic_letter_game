@@ -28,16 +28,19 @@ document.onkeydown = function(event){
     chanceLeft--;
     var userGuess = event.key;
 
-    if(chanceLeft >= 0 ){
+    // why can't I reach this point?
+    
+    if(chanceLeft > -1 ){
         lettersGuessedText.textContent ="Letters Guessed: " + lettersGuessed.toString();
 
 
         if(userGuess === psychicGuess){
             wins++;
-            winsText.textContent = "Wins: " + wins; 
-            console.log("message2") 
+            winsText.textContent = "Wins: " + wins;  
             psychicGuess = computerGuess();
             console.log(psychicGuess);
+            lettersGuessed.length=0;
+            chanceLeft=9;
 
         }
         else{
