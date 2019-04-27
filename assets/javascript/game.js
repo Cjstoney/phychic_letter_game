@@ -44,11 +44,12 @@ document.onkeydown = function(event){
             chancesLeftText.textContent = "Guesses Left: " + chanceLeft;
             lossesText.textContent = "Losses: " + losses;
             lettersGuessed.push(userGuess);
+            
         }
     }
     else{
         losses++;
-        alert("Computer Wins, please try again!")
+       
     }
     
 }
