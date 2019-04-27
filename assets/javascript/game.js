@@ -4,7 +4,7 @@ var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
 // creating variables to hold wins, losses, chances left, and letters guessed
 var wins = 0;
 var losses = 0;
-var chanceLeft = 11;
+var chanceLeft = 10;
 var lettersGuessed = [];
 var psychicGuess = computerGuess()
 
@@ -16,6 +16,12 @@ var lettersGuessedText = document.getElementById("letter_guessed");
 
 
 //function for computer generated random number 
+function reset(){
+    chanceLeft=10;
+    lettersGuessed= [];
+    console.log("reset")
+}
+
 function computerGuess(){ 
     console.log("message")
     return computerChoices[Math.floor(Math.random() * computerChoices.length)]
@@ -25,25 +31,21 @@ console.log(psychicGuess);
 
 // function for key pressed
 document.onkeydown = function(event){
-    chanceLeft--;
     var userGuess = event.key;
 
-    // why can't I reach this point?
-
-    if(chanceLeft > -1 ){
+    if(chanceLeft > 0 ){
         lettersGuessedText.textContent ="Letters Guessed: " + lettersGuessed.toString();
-
+        
 
         if(userGuess === psychicGuess){
             wins++;
             winsText.textContent = "Wins: " + wins;  
             psychicGuess = computerGuess();
             console.log(psychicGuess);
-            lettersGuessed.length=0;
-            chanceLeft=11;
-
+            reset();
         }
         else{
+            chanceLeft--;
             chancesLeftText.textContent = "Guesses Left: " + chanceLeft;
             lossesText.textContent = "Losses: " + losses;
             lettersGuessed.push(userGuess);
@@ -52,7 +54,10 @@ document.onkeydown = function(event){
     }
     else{
         losses++;
-       
+        lossesText.textContent = "Losses: " + losses;
+        reset();
+        psychicGuess = computerGuess();
+        console.log(psychicGuess); 
     }
-    
+   
 }
